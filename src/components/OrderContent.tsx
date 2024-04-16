@@ -6,7 +6,7 @@ type OrderContentProps = {
 };
 function OrderContent({ order, removeItem }: OrderContentProps) {
   return (
-    <>
+    <div>
       {order.map((e) => (
         <div key={e.id} className="flex justify-between items-center my-4">
           <div>
@@ -22,7 +22,7 @@ function OrderContent({ order, removeItem }: OrderContentProps) {
           </button>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 
