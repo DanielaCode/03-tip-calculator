@@ -19,7 +19,8 @@ function useOrder() {
   }
 
   return {
-    addItem
+    addItem,
+    order
   };
 }
 
