@@ -4,7 +4,7 @@ import OrderContent from "./components/OrderContent";
 import {menuItems} from "./data/db";
 
 function App() {
-  const {addItem,order} = useOrder();
+  const {addItem,removeItem,order} = useOrder();
   return (
     <>
       <header className="bg-sky-400 py-5">
@@ -19,7 +19,7 @@ function App() {
         </div>
         <div className="border-dashed border-2 border-sky-400 px-5 rounded-md">
           <h2 className="text-3xl font-black py-4">Consumos</h2>
-          <OrderContent order={order}/>
+          <OrderContent order={order} removeItem={removeItem}/>
         </div>
       </main>
     </>
