@@ -5,7 +5,9 @@ function useOrder() {
   const [order, setOrder] = useState<OrderItem[]>([]);
 
   function addItem(item:MenuItem){
-    console.log(item)
+    //casting an MenuItem to OrderItem
+    const newItem:OrderItem = {...item,quantity:1}
+    setOrder([...order, newItem]);
   }
 
   return {
