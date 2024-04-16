@@ -1,7 +1,9 @@
+import useOrder from "./Hooks/useOrder";
 import MenuItem from "./components/MenuItem";
 import {menuItems} from "./data/db";
 
 function App() {
+  const {addItem} = useOrder();
   return (
     <>
       <header className="bg-sky-400 py-5">
@@ -11,7 +13,7 @@ function App() {
         <div className="px-5">
           <h2 className="text-3xl font-black py-4">Menu</h2>
           <div className="space-y-3">
-            {menuItems.map((e)=><MenuItem key={e.id} item={e}/>)} 
+            {menuItems.map((e)=><MenuItem key={e.id} item={e} addItem = {addItem}/>)} 
           </div>
         </div>
         <div className="px-5">
