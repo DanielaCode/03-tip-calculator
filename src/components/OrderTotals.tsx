@@ -1,16 +1,15 @@
 import { useMemo } from "react"
-import type { OrderItem } from "../types"
+import { OrderAction, OrderState } from "../reducers/order-reducer"
 
 type OrderTotalsProps={
-    order:OrderItem[]
-    tip:number
-    placeOrder:()=>void
+    state:OrderState
+    dispatch: React.Dispatch<OrderAction>
 }
 
-function OrderTotals({order, tip, placeOrder}:OrderTotalsProps) {
-    const totalOrder = useMemo(()=>order.reduce((total,e)=>total+(e.price*e.quantity),0),[order]);
-    const totalProp = useMemo(()=>tip*totalOrder,[tip,order]);
-    const total = useMemo(()=>totalOrder+totalProp,[order,tip]);
+function OrderTotals({state, dispatch}:OrderTotalsProps) {
+    const totalOrder = useMemo(()=>state.order.reduce((total,e)=>total+(e.price*e.quantity),0),[state.order]);
+    const totalProp = useMemo(()=>state.tip*totalOrder,[state]);
+    const total = useMemo(()=>totalOrder+totalProp,[state]);
   return (
     <div>
         <h3 className="font-black text-2xl">Totales y Propina</h3>
@@ -22,7 +21,7 @@ function OrderTotals({order, tip, placeOrder}:OrderTotalsProps) {
         <button 
             className="w-full bg-black text-white font-black p-4 mt-4 disabled:opacity-10"
             disabled = {total === 0}
-            onClick={placeOrder}
+            onClick={()=>dispatch({type:"place-order"})}
             >
             Guardar orden
         </button>

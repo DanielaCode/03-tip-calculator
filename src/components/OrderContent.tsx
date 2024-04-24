@@ -1,13 +1,13 @@
-import type { MenuItem, OrderItem } from "../types";
+import { OrderAction, OrderState } from "../reducers/order-reducer";
 
 type OrderContentProps = {
-  order: OrderItem[];
-  removeItem: (id: MenuItem["id"]) => void;
+  state:OrderState,
+  dispatch: React.Dispatch<OrderAction>
 };
-function OrderContent({ order, removeItem }: OrderContentProps) {
+function OrderContent({ state, dispatch }: OrderContentProps) {
   return (
     <div>
-      {order.map((e) => (
+      {state.order.map((e) => (
         <div key={e.id} className="flex justify-between items-center my-4">
           <div>
             <p>
@@ -17,7 +17,7 @@ function OrderContent({ order, removeItem }: OrderContentProps) {
               Cantidad: {e.quantity} - ${e.price * e.quantity}
             </p>
           </div>
-          <button className="text-white font-black bg-red-500 h-8 w-8 rounded-full" onClick={()=>removeItem(e.id)}>
+          <button className="text-white font-black bg-red-500 h-8 w-8 rounded-full" onClick={()=>dispatch({type:"remove-item",payload:{id:e.id}})}>
             x
           </button>
         </div>
